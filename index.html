@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="En">
 <head>
 <meta charset="UTF-8">
 <title>practice</title>
-<!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -13,6 +12,7 @@
   .btn.outline {
     background: none;
     padding: 12px 22px;
+    border-radius: 15px;
   }
   .btn-default.outline {
     border: 3px solid rgba(51,51,51,0.8);
@@ -30,7 +30,7 @@
   .growingBox {  
     height: 100px; 
     max-height: 100px;
-    width: 80%;
+    width: 70%;
     border-radius: 20px;
     margin: 0 auto;
     margin-top: 10px;
@@ -41,35 +41,37 @@
     -webkit-transition-duration: 1s;  
   }  
   .growingBox:hover    {  
-    height: 200px;  
+    height: 300px;  
     background-color: rgba(242, 242, 242,0.9);
-    max-height: 200px;
+    max-height: 300px;
 }  
 </style>
 </head>
 <body class="container-fluid" style="width: 100%; background-image: url('./background.jpg')" ng-app="myApp" ng-controller="projectCtrl">
-  <div class="row" style="height: 90px; width: 80%; border-radius: 20px; margin: 0 auto; margin-top: 10px; padding: 10px; background-color: rgba(51,51,51,0.8); color: white">
+  <div class="row" style="height: 90px; width: 70%; border-radius: 20px; margin: 0 auto; margin-top: 10px; padding: 10px; background-color: rgba(51,51,51,0.8); color: white">
     <div class="col-xs-6" style="text-align: left; font-size: 40px">Projects</div>
     <div class="col-xs-6" style="text-align: right; font-size: 40px">
       <div style="margin-right: 30px;"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></div>
     </div>
   </div>
   <div class="row growingBox" ng-repeat="project in projects">
-    <div class="col-xs-3">
-      <div style="font-size: 30px">{{project.name}}</div>
-      <div style="font-size: 20px">Author: {{project.author}}</div>
-      <div style="font-size: 20px">Date: {{project.date}}</div>
-    </div>
-    <div class="col-xs-5">
-      <b>Description</b>:<br>{{project.description}}
-    </div>
-    <div class="col-xs-4" style="hight:100px; margin: 0 auto">
-      <button type="button" class="btn btn-default outline">
-        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Start
-      </button>
-      <button type="button" class="btn btn-default outline">
-        <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Browse code
-      </button>
+    <div class="col-xs-12" style="font-size: 30px">{{project.name}}</div>
+    <div class="col-xs-12" style="font-size: 20px">
+      <div class="col-xs-4">
+        <div><b>Author:</b> {{project.author}}</div>
+        <div><b>Date:</b> {{project.date}}</div>
+        <div style="margin-top: 140px">
+          <button type="button" class="btn btn-default outline">
+            <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Start
+          </button>
+          <button type="button" class="btn btn-default outline">
+            <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Browse code
+          </button>
+        </div>
+      </div>
+      <div class="col-xs-8">
+        <b>Description:</b><br>{{project.description}}
+      </div>
     </div>
   </div>
 </body>
