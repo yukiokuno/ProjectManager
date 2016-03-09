@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>practice</title>
+<!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/controller.js"></script>
+<style>
+  .btn.outline {
+    background: none;
+    padding: 12px 22px;
+  }
+  .btn-default.outline {
+    border: 3px solid rgba(51,51,51,0.8);
+    color: rgba(51,51,51,0.8);
+  }
+  .btn-default.outline:hover, .btn-default.outline:focus, .btn-default.outline:active, .btn-default.outline.active, .open > .dropdown-toggle.btn-primary {
+    color: rgba(51,51,51,0.8);
+    border-color: rgba(204, 204, 255, 0.8);
+  }
+  .btn-default.outline:active, .btn-default.outline.active {
+    border-color: rgba(230, 255, 255, 0.8);
+    color: rgba(230, 255, 255, 0.8);
+    box-shadow: none;
+  }
+  .growingBox {  
+    height: 100px; 
+    max-height: 100px;
+    width: 80%;
+    border-radius: 20px;
+    margin: 0 auto;
+    margin-top: 10px;
+    word-break: keep-all;
+    overflow: hidden;
+    background-color: rgba(242, 242, 242,0.8);
+    -webkit-transition-property: height, background-color;  
+    -webkit-transition-duration: 1s;  
+  }  
+  .growingBox:hover    {  
+    height: 200px;  
+    background-color: rgba(242, 242, 242,0.9);
+    max-height: 200px;
+}  
+</style>
+</head>
+<body class="container-fluid" style="width: 100%; background-image: url('./images/background.jpg')" ng-app="myApp" ng-controller="projectCtrl">
+  <div class="row" style="height: 90px; width: 80%; border-radius: 20px; margin: 0 auto; margin-top: 10px; padding: 10px; background-color: rgba(51,51,51,0.8); color: white">
+    <div class="col-xs-6" style="text-align: left; font-size: 40px">Projects</div>
+    <div class="col-xs-6" style="text-align: right; font-size: 40px">
+      <div style="margin-right: 30px;"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></div>
+    </div>
+  </div>
+  <div class="row growingBox" ng-repeat="project in projects">
+    <div class="col-xs-3">
+      <div style="font-size: 30px">{{project.name}}</div>
+      <div style="font-size: 20px">Author: {{project.author}}</div>
+      <div style="font-size: 20px">Date: {{project.date}}</div>
+    </div>
+    <div class="col-xs-5">
+      <b>Description</b>:<br>{{project.description}}
+    </div>
+    <div class="col-xs-4" style="hight:100px; margin: 0 auto">
+      <button type="button" class="btn btn-default outline">
+        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Start
+      </button>
+      <button type="button" class="btn btn-default outline">
+        <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Browse code
+      </button>
+    </div>
+  </div>
+</body>
