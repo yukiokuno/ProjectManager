@@ -2,11 +2,12 @@
 <html lang="En" ng-app="myApp" ng-controller="projectCtrl">
 <head>
 <meta charset="UTF-8">
-<title>practice</title>
+<title>ProjectManager</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/angular.min.js"></script>
+    <script src="js/ui-bootstrap-tpls-1.2.4.min.js"></script>
     <script src="js/controller.js"></script>
 <style>
   .btn.outline {
@@ -49,7 +50,7 @@
   <div class="row" style="height: 90px; width: 70%; border-radius: 20px; margin: 0 auto; margin-top: 10px; padding: 10px; background-color: rgba(51,51,51,0.8); color: white">
     <div class="col-xs-6" style="text-align: left; font-size: 40px">Projects</div>
     <div class="col-xs-6" style="text-align: right; font-size: 40px">
-      <div style="margin-right: 30px;"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></div>
+      <div style="margin-right: 30px;" ng-click="addProject()"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></div>
     </div>
   </div>
   <div id="growingBox" class="row growingBox" ng-repeat="project in projects">
@@ -71,5 +72,64 @@
         <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Browse code
       </button>
     </div>
+  </div>
+  <div>
+    <script type="text/ng-template" id="projectRegisterModal">
+        <div class="modal-header">
+            <h3 class="modal-title">Let's add a project</h3>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row">
+              <div class="col-xs-4">PROJECT NAME:</div>
+              <div class="col-xs-8 form-group"><input type="text" class="form-control" placeholder="ex. 'projectX'" ng-model="newProjectName" /></div>
+            </div>
+            <div class="row">
+              <div class="col-xs-4">AUTHOR:</div>
+              <div class="col-xs-8">
+                <div class="col-xs-5 form-group">
+                  <select ng-disabled="addingUser" class="form-control" ng-model="newProjectAuthor" ng-options="user.name for user in users" ng-init="newProjectAuthor = users[0]">
+                  </select>
+                </div>
+                <div ng-show="!addingUser" class="ng-hide col-xs-2" style="font-size: 25px" ng-click="addUser()">
+                  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </div>
+                <div ng-show="addingUser" class="ng-hide col-xs-5 form-group">
+                  <input type="text" class="form-control" placeholder="new name" ng-model="newProjectAuthor.name" />
+                </div>
+                <div ng-show="addingUser" class="ng-hide col-xs-2" style="font-size: 25px" ng-click="cancelAddUser()">
+                  <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-4">DATE:</div>
+              <div class="col-xs-8 form-group">{{newProjectDateFormatted}}</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-4">PROJECT PATH/LINK:</div>
+              <div class="col-xs-8 form-group"><input type="text" class="form-control" placeholder="ex. './projectX/index.html'" ng-model="newProjectPath" /></div>
+            </div>
+            <div class="row">
+              <div class="col-xs-4">SOURCE CODE LINK:</div>
+              <div class="col-xs-8 form-group"><input type="text" class="form-control" placeholder="ex. 'https://github.com/XXX/projectX'" ng-model="newProjectCodeLink" /></div>
+            </div>
+            <div class="row">
+              <div class="col-xs-4">DESCRIPTION:</div>
+              <div class="col-xs-8 form-group"><textarea class="form-control" rows="3" placeholder="ex. 'This project manages all of your projects...'" ng-model="newProjectDescription"></textarea></div>
+            </div>
+          </form>
+            <ul>
+                <li ng-repeat="item in items">
+                    <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ selected.item }}</b>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
   </div>
 </body>

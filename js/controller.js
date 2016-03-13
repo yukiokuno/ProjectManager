@@ -1,7 +1,6 @@
-var myApp = angular.module('myApp',[]);
-myApp.controller('projectCtrl', ['$scope', function($scope) {
+var myApp = angular.module('myApp',['ui.bootstrap']);
+myApp.controller('projectCtrl', function($scope, $uibModal, $log) {
     $scope.movePage = function(path) {
-      console.log("here here");
       window.open(path);
     };
     $scope.projects = [{
@@ -26,4 +25,61 @@ myApp.controller('projectCtrl', ['$scope', function($scope) {
       projectPath: "./index.html",
       projectCodePath: "https://github.com/" 
     }];
-}]);
+    $scope.items = ['item1', 'item2', 'item3'];
+    $scope.users = [
+      {id: '1', name: 'Yuki'},
+      {id: '2', name: 'Boo'},
+      {id: '3', name: 'Foo'}
+    ];
+    $scope.addProject = function() {
+      var modalInstance = $uibModal.open({
+        templateUrl: 'projectRegisterModal',
+        controller: 'ModalInstanceCtrl',
+        size: 'lg',
+        resolve: {
+          items: function () {
+            return $scope.items;
+          },
+          users: function () {
+            return $scope.users;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+});
+myApp.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items, users) {
+
+  $scope.items = items;
+  $scope.users = users;
+  $scope.addingUser = false;
+  $scope.newProjectDate = new Date();
+  var date = $scope.newProjectDate;
+  $scope.newProjectDateFormatted = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(); 
+  $scope.selected = {
+    item: $scope.items[0]
+  };
+  
+  $scope.addUser = function() {
+    $scope.addingUser = true;
+    $scope.newProjectAuthor = null;
+  };
+
+  $scope.cancelAddUser = function() {
+    $scope.addingUser = false;
+    $scope.newProjectAuthor = users[0];
+  };
+
+  $scope.ok = function () {
+    $uibModalInstance.close($scope.selected.item);
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});
