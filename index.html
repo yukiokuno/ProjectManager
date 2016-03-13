@@ -8,7 +8,10 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/ui-bootstrap-tpls-1.2.4.min.js"></script>
+    <script type="text/javascript" src="js/ng-tags-input.min.js"></script>
     <script src="js/controller.js"></script>
+    <link rel="stylesheet" href="css/ng-tags-input.min.css"> 
+    <link rel="stylesheet" href="css/ng-tags-input.bootstrap.min.css"> 
 <style>
   .btn.outline {
     background: none;
@@ -82,7 +85,7 @@
           <form>
             <div class="row">
               <div class="col-xs-4">PROJECT NAME:</div>
-              <div class="col-xs-8 form-group"><input type="text" class="form-control" placeholder="ex. 'projectX'" ng-model="newProjectName" /></div>
+              <div class="col-xs-8 form-group"><input type="text" class="form-control" placeholder="What's your project name?" ng-model="newProjectName" /></div>
             </div>
             <div class="row">
               <div class="col-xs-4">AUTHOR:</div>
@@ -95,7 +98,7 @@
                   <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                 </div>
                 <div ng-show="addingUser" class="ng-hide col-xs-5 form-group">
-                  <input type="text" class="form-control" placeholder="new name" ng-model="newProjectAuthor.name" />
+                  <input type="text" class="form-control" placeholder="who are you?" ng-model="newProjectAuthor.name" />
                 </div>
                 <div ng-show="addingUser" class="ng-hide col-xs-2" style="font-size: 25px" ng-click="cancelAddUser()">
                   <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
@@ -108,15 +111,22 @@
             </div>
             <div class="row">
               <div class="col-xs-4">PROJECT PATH/LINK:</div>
-              <div class="col-xs-8 form-group"><input type="text" class="form-control" placeholder="ex. './projectX/index.html'" ng-model="newProjectPath" /></div>
+              <div class="col-xs-8 form-group"><input type="text" class="form-control" placeholder="Where is your project?" ng-model="newProjectPath" /></div>
             </div>
             <div class="row">
               <div class="col-xs-4">SOURCE CODE LINK:</div>
-              <div class="col-xs-8 form-group"><input type="text" class="form-control" placeholder="ex. 'https://github.com/XXX/projectX'" ng-model="newProjectCodeLink" /></div>
+              <div class="col-xs-8 form-group"><input type="text" class="form-control" placeholder="Where is the source code?" ng-model="newProjectCodeLink" /></div>
             </div>
             <div class="row">
               <div class="col-xs-4">DESCRIPTION:</div>
-              <div class="col-xs-8 form-group"><textarea class="form-control" rows="3" placeholder="ex. 'This project manages all of your projects...'" ng-model="newProjectDescription"></textarea></div>
+              <div class="col-xs-8 form-group"><textarea class="form-control" rows="3" placeholder="How do you describe your project?" ng-model="newProjectDescription"></textarea></div>
+            </div>
+            <div class="row">
+              <div class="col-xs-4">TAGS:</div>
+              <div class="col-xs-8 form-group">
+                <tags-input ng-model="newProjectTags" placeholder="Use some tags to describe more!">
+                </tags-input>
+              </div>
             </div>
           </form>
             <ul>

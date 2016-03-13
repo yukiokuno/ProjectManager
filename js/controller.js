@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp',['ui.bootstrap']);
+var myApp = angular.module('myApp',['ui.bootstrap', 'ngTagsInput']);
 myApp.controller('projectCtrl', function($scope, $uibModal, $log) {
     $scope.movePage = function(path) {
       window.open(path);
@@ -74,7 +74,11 @@ myApp.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items
     $scope.addingUser = false;
     $scope.newProjectAuthor = users[0];
   };
-
+  $scope.newProjectTags = [
+  ];
+  $scope.loadTags = function(query) {
+    return $http.get('/tags?query=' + query);
+  };
   $scope.ok = function () {
     $uibModalInstance.close($scope.selected.item);
   };
