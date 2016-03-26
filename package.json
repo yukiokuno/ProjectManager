@@ -1,0 +1,22 @@
+{
+  "name": "projectmanager",
+  "version": "1.0.0",
+  "description": "list your projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yukiokuno/ProjectManager.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yukiokuno/ProjectManager/issues"
+  },
+  "homepage": "https://github.com/yukiokuno/ProjectManager#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
